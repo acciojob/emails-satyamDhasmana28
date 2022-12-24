@@ -1,8 +1,10 @@
 package com.driver;
 
 import java.time.LocalTime;
+import java.util.Date;
 
-public class Meeting {
+
+public class Meeting implements Comparable<Meeting> {
     private LocalTime startTime;
     private LocalTime endTime;
 
@@ -11,4 +13,16 @@ public class Meeting {
         this.endTime = endTime;
     }
 
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    @Override
+    public int compareTo(Meeting o) {
+        return 0;
+    }
 }
