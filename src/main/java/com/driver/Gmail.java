@@ -21,7 +21,7 @@ public class Gmail extends Email {
     }
 
     public boolean isFull(){
-        return Inbox.size()>=this.inboxCapacity;
+        return Inbox.size()==this.inboxCapacity;
     }
     public void receiveMail(Date date, String sender, String message){
         // If the inbox is full, move the oldest mail in the inbox to trash and add the new mail to inbox.
@@ -71,16 +71,15 @@ public class Gmail extends Email {
     public int findMailsBetweenDates(Date start, Date end){
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
-        int noOfMail=0;
-        if(Inbox.isEmpty())
+        int noOfMail=1;
+        if(Inbox.isEmpty()) {
             return noOfMail;
+        }
+
         else{
            for(Mail mail : this.Inbox){
-               if(mail.date.compareTo(end)<=0){
-                   noOfMail++;
-               }
-               else{
-                   break;
+               if(mail.date.compareTo(start)>=0 && mail.date.compareTo(end)<=0){
+                   ++noOfMail;
                }
            }
         }

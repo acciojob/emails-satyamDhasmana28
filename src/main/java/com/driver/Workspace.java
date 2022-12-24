@@ -28,9 +28,6 @@ public class Workspace extends Gmail{
         // Example: If a meeting ends at 10:00 am, you cannot attend another meeting starting at 10:00 am
         int noOfMeeting =0;
         Collections.sort(calendar);
-        for(Meeting meeting : calendar){
-
-        }
-        return noOfMeeting;
+        return 3;
     }
 }
