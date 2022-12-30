@@ -71,18 +71,12 @@ public class Gmail extends Email {
     public int findMailsBetweenDates(Date start, Date end){
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
-        int noOfMail=1;
-        if(Inbox.isEmpty()) {
-            return noOfMail;
-        }
-
-        else{
+        int noOfMail=0;
            for(Mail mail : this.Inbox){
                if(mail.date.compareTo(start)>=0 && mail.date.compareTo(end)<=0){
-                   ++noOfMail;
+                   noOfMail++;
                }
            }
-        }
         return  noOfMail;
     }
 

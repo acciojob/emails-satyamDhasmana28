@@ -19,50 +19,31 @@ public class Email {
         return password;
     }
 
-    public  boolean isLength(String password){
-        if(password.length()>=8){
-            return  true;
-        }
-        return false;
-    }
-    public  boolean isUpperCase(String password){
-        for(int i =0 ; i < password.length() ; i++){
-            if(password.charAt(i)>='A'&&password.charAt(i)<='Z'){
-                return  true;
-            }
-        }
-        return false;
-    }
-    public  boolean isLowerCase(String password){
-        for(int i =0 ; i < password.length() ; i++){
-            if(password.charAt(i)>='a'&&password.charAt(i)<='z'){
-                return  true;
-            }
-        }
-        return false;
-    }
-    public  boolean isDigit(String password){
-        for(int i =0 ; i < password.length() ; i++){
-            if(password.charAt(i)>='0'&&password.charAt(i)<='9'){
-                return  true;
-            }
-        }
-        return false;
-    }
-    public  boolean isSpecialCharacter(String password){
-        for(int i =0 ; i < password.length() ; i++){
-            if(password.charAt(i)>=32&&password.charAt(i)<=47 && password.charAt(i)>=58&&password.charAt(i)<=64&&
-                    password.charAt(i)>=91&&password.charAt(i)<=96&&password.charAt(i)>=123&&password.charAt(i)<=126){
-                return  true;
-            }
-        }
-        return false;
-    }
     public boolean authenticate(String password){
-        if(isLength(password)&&isUpperCase(password)&&isLowerCase(password)&&isDigit(password)&&isSpecialCharacter(password)){
-            return true;
+      boolean isUpperCase=false,isLowerCase=false,isOneDigit=false,
+              isSpecialCharacter=false;
+      if(password.length()<8){
+          return false;
+      }
+      for(int i=0 ; i<password.length() ; i++){
+          char ch = password.charAt(i);
+          if(ch>='A' && ch<='Z'){
+             isUpperCase=true;
+          }
+          else if(ch>='a' && ch<='z'){
+              isLowerCase=true;
+          }
+          else if(ch>='0' && ch<='9'){
+              isOneDigit=true;
+          }
+          else{
+              isSpecialCharacter =true;
+          }
         }
-        return  false;
+      if(isUpperCase&&isLowerCase&&isOneDigit&&isSpecialCharacter){
+          return true;
+      }
+      return false;
     }
     public void changePassword(String oldPassword, String newPassword){
         if(this.password.equals(oldPassword)){
